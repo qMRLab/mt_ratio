@@ -1,2 +1,21 @@
-# mt_ratio
-qMRPullseq for qMRLab module `mt_ratio` 
+## Intro
+
+The magnetization transfer saturatoin (VFA) implementation of [qMRLab](https://qmrlab.org) takes following as input:
+
+***
+
+## Pulse sequence implementation 
+
+### Sequence components 
+
+### Scan control 
+
+### Reconstruction 
+
+
+***
+
+
+
+
+
