@@ -29,7 +29,8 @@ var instanceName = rth.instanceName();
 var observer = new RthReconRawObserver();
 observer.setSequenceId(sequenceId);
 observer.observeValueForKey("acquisition.samples", "samples");
-
+// Disable button after observer is discond
+observer.scanDisabled.connect(rth.deactivateScanButton);
 
 function reconBlock(input) {
   
@@ -124,8 +125,6 @@ function ExportBlock(input){
     "mri.VoxelSpacing",
     "mri.EchoTime",
     "mri.RepetitionTime",
-    "mri.FlipAngle1",
-    "mri.FlipAngle2",
     "mri.FlipAngle", // Belonging to the current loop
     "mri.SliceThickness",
     "reconstruction.phaseEncodes",
@@ -156,8 +155,6 @@ function ExportBlock(input){
     that.imageExport.addTag("SpacingZ",keys["mri.VoxelSpacing"][2]);
     that.imageExport.addTag("EchoTime",keys["mri.EchoTime"]);
     that.imageExport.addTag("RepetitionTime",keys["mri.RepetitionTime"]);
-    that.imageExport.addTag("FlipAngle1",keys["mri.FlipAngle1"]);
-    that.imageExport.addTag("FlipAngle2",keys["mri.FlipAngle2"]);
     that.imageExport.addTag("FlipAngle",keys["mri.FlipAngle"]);
     that.imageExport.addTag("SliceThickness",keys["mri.SliceThickness"]);
     that.imageExport.addTag("NumberOfRows",keys["reconstruction.phaseEncodes"]);
@@ -179,7 +176,7 @@ function ExportBlock(input){
     var subjectBIDS  = "sub-" + keys["mri.SubjectBIDS"];
     var sessionBIDS = (keys["mri.SessionBIDS"]) ? "_ses-" + keys["mri.SessionBIDS"] : "";
     var acquisitionBIDS = (keys["mri.AcquisitionBIDS"]) ? "_acq-" + keys["mri.AcquisitionBIDS"] : "";
-    var exportFileName  = exportDirectory + subjectBIDS + sessionBIDS + acquisitionBIDS + "_flip-" + flipIndex + "_VFAT1.dat";
+    var exportFileName  = exportDirectory + subjectBIDS + sessionBIDS + acquisitionBIDS  + "_MTR.dat";
     that.imageExport.setFileName(exportFileName);
 
   });

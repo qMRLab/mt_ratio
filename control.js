@@ -199,8 +199,6 @@ rth.addCommand(new RthUpdateChangeMRIParameterCommand(sequenceId,{
   ExcitationTimeBandwidth: SB.excitation["<Sinc RF>.timeBandwidth"],
   ExcitationDuration: SB.excitation["<Sinc RF>.duration"],
   NumberOfCoils: parameterList[2],
-  FlipAngle1:flipAngle1,
-  FlipAngle2: flipAngle2,
   PreAcqDuration: SB.readout["<Preacquisitions>.duration"]
 }));
 
@@ -314,9 +312,9 @@ changeSliceThickness(controlWidget.inputWidget_SliceThickness.value);
 
 // ADD LOOP COMMANDS
 
-var bigAngleCommand = new  RthUpdateFloatParameterCommand(sequenceId, "excitation", "scaleRF", "", 1);
+//var bigAngleCommand = new  RthUpdateFloatParameterCommand(sequenceId, "excitation", "scaleRF", "", 1);
 // Following sets FlipAngle to 3 when FA1 = 30 and FA2=25 
-var smallAngleCommand = new  RthUpdateFloatParameterCommand(sequenceId, "excitation", "scaleRF", "", flipAngle2/flipAngle1);
+//var smallAngleCommand = new  RthUpdateFloatParameterCommand(sequenceId, "excitation", "scaleRF", "", flipAngle2/flipAngle1);
 
 //rth.addCommand(new RthUpdateChangeMRIParameterCommand(sequenceId,{
 //  SubjectBIDS: controlWidget.subjectBIDS.text,
@@ -325,12 +323,12 @@ var smallAngleCommand = new  RthUpdateFloatParameterCommand(sequenceId, "excitat
 //}));
 
 
-var infoCommand1 = new RthUpdateChangeMRIParameterCommand(sequenceId,{FlipAngle: flipAngle1, FlipIndex: "01"});
-var infoCommand2 = new RthUpdateChangeMRIParameterCommand(sequenceId,{FlipAngle: flipAngle2, FlipIndex: "02"});
+//var infoCommand1 = new RthUpdateChangeMRIParameterCommand(sequenceId,{FlipAngle: flipAngle1, FlipIndex: "01"});
+//var infoCommand2 = new RthUpdateChangeMRIParameterCommand(sequenceId,{FlipAngle: flipAngle2, FlipIndex: "02"});
 
-var updateGroup1 = new RthUpdateGroup([bigAngleCommand, infoCommand1]);
-var updateGroup2 = new RthUpdateGroup([smallAngleCommand, infoCommand2]);
+//var updateGroup1 = new RthUpdateGroup([bigAngleCommand, infoCommand1]);
+//var updateGroup2 = new RthUpdateGroup([smallAngleCommand, infoCommand2]);
 
-var loopCommands = [updateGroup1, updateGroup2];
+//var loopCommands = [updateGroup1, updateGroup2];
 
-rth.setLoopCommands(sequenceId, "tiploop", loopCommands);
+//rth.setLoopCommands(sequenceId, "tiploop", loopCommands);
